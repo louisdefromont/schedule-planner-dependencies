@@ -10,31 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
-public class ToDoEvent {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @OneToOne(cascade=CascadeType.ALL)
-    private Event event;
+public class ToDoEvent extends Event {
     private LocalDateTime dueDateTime;
     private int estimatedMinutes;
     private boolean completed = false;
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Event getEvent() {
-        return this.event;
-    }
-
-    public void setEvent(Event event) {
-        this.event = event;
-    }
 
     public LocalDateTime getDueDateTime() {
         return this.dueDateTime;

@@ -86,7 +86,7 @@ public class Schedule {
             ScheduledEvent scheduledEvent = new ScheduledEvent();
             scheduledEvent.setStartTime(plannedEvent.getStartTime());
             scheduledEvent.setEndTime(plannedEvent.getEndTime());
-            scheduledEvent.setEvent(plannedEvent.getEvent());
+            scheduledEvent.setName(plannedEvent.getName());
             addToSchedule(scheduledEvent);
         }
 
@@ -97,7 +97,7 @@ public class Schedule {
                     ScheduledEvent scheduledEvent = new ScheduledEvent();
                     scheduledEvent.setStartTime(LocalDateTime.of(currentDate, repeatableEvent.getStartTime()));
                     scheduledEvent.setEndTime(LocalDateTime.of(currentDate, repeatableEvent.getEndTime()));
-                    scheduledEvent.setEvent(repeatableEvent.getEvent());
+                    scheduledEvent.setName(repeatableEvent.getName());
                     addToSchedule(scheduledEvent);
                 }
             }
@@ -117,7 +117,7 @@ public class Schedule {
                 for (int i = 0; i < availiableMinutersPerDay.length; i++) {
                     if (availiableMinutersPerDay[i] > 0) {
                         int minutesSpent = Math.min(minutesPerDay, availiableMinutersPerDay[i]);
-                        scheduleDates.get(i).scheduleEvent(toDoEvent.getEvent(), minutesSpent);
+                        scheduleDates.get(i).scheduleEvent(toDoEvent, minutesSpent);
                         minutesLeft -= minutesSpent;
                     }
                 }

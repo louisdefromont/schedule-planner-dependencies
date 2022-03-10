@@ -109,14 +109,14 @@ import javax.persistence.OneToMany;
             for (TimeBlock timeBlock : getAvailiableTimeBlocks()) {
                 if (timeBlock.getDurationMinutes() >= durationRemaining) {
                     ScheduledEvent scheduledEvent = new ScheduledEvent();
-                    scheduledEvent.setEvent(event);
+                    scheduledEvent.setName(event.getName());
                     scheduledEvent.setStartTime(timeBlock.getStartTime());
                     scheduledEvent.setEndTime(timeBlock.getStartTime().plusMinutes(durationRemaining));
                     addEvent(scheduledEvent);
                     return true;
                 } else {
                     ScheduledEvent scheduledEvent = new ScheduledEvent();
-                    scheduledEvent.setEvent(event);
+                    scheduledEvent.setName(event.getName());
                     scheduledEvent.setStartTime(timeBlock.getStartTime());
                     scheduledEvent.setEndTime(timeBlock.getEndTime());
                     addEvent(scheduledEvent);

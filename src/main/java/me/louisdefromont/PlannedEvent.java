@@ -13,29 +13,8 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class PlannedEvent extends Event {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @OneToOne(cascade=CascadeType.ALL)
-    private Event event;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Event getEvent() {
-        return this.event;
-    }
-
-    public void setEvent(Event event) {
-        this.event = event;
-    }
 
     public LocalDateTime getStartTime() {
         return this.startTime;

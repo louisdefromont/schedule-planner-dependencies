@@ -15,30 +15,9 @@ import javax.persistence.OneToOne;
  * An event that has been scheduled.
  */
 @Entity
-public class ScheduledEvent {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @OneToOne(cascade=CascadeType.ALL)
-    private Event event;
+public class ScheduledEvent extends Event {
     private LocalDateTime startTime;
     private LocalDateTime endTime;
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Event getEvent() {
-        return this.event;
-    }
-
-    public void setEvent(Event event) {
-        this.event = event;
-    }
 
     public LocalDateTime getStartTime() {
         return this.startTime;
