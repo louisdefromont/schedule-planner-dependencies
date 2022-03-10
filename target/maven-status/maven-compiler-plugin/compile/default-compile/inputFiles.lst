@@ -2,6 +2,7 @@
 /home/louis/Documents/VSCode/schedule-planner-dependencies/src/main/java/me/louisdefromont/PlannedEvent.java
 /home/louis/Documents/VSCode/schedule-planner-dependencies/src/main/java/me/louisdefromont/ScheduleDate.java
 /home/louis/Documents/VSCode/schedule-planner-dependencies/src/main/java/me/louisdefromont/ToDoEvent.java
+/home/louis/Documents/VSCode/schedule-planner-dependencies/src/main/java/me/louisdefromont/PlannedEventRepository.java
 /home/louis/Documents/VSCode/schedule-planner-dependencies/src/main/java/me/louisdefromont/TimeBlock.java
 /home/louis/Documents/VSCode/schedule-planner-dependencies/src/main/java/me/louisdefromont/RepeatableEvent.java
 /home/louis/Documents/VSCode/schedule-planner-dependencies/src/main/java/me/louisdefromont/ScheduledEvent.java

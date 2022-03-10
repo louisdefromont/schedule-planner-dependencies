@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
-public class PlannedEvent {
+public class PlannedEvent extends Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
