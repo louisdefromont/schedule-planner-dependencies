@@ -9,15 +9,17 @@ public class EventRepository <T extends Event> {
     private String schedulePlannerBackEndURL;
     private String endPoint;
     private Class<T> classType;
+    private GenericType<List<T>> classTypeAsList;
 
-    public EventRepository(String schedulePlannerBackEndURL, String endPoint, Class<T> classType) {
+    public EventRepository(String schedulePlannerBackEndURL, String endPoint, Class<T> classType, GenericType<List<T>> classTypeAsList) {
         this.schedulePlannerBackEndURL = schedulePlannerBackEndURL;
         this.endPoint = endPoint;
         this.classType = classType;
+        this.classTypeAsList = classTypeAsList;
     }
 
     public T saveEvent(T event) {
-        return Unirest.post(schedulePlannerBackEndURL + endPoint)
+        return Unirest.post(schedulePlannerBackEndURL + "/events" + endPoint)
                 .header("Content-Type", "application/json")
                 .body(event)
                 .asObject(classType)
@@ -26,7 +28,7 @@ public class EventRepository <T extends Event> {
     
     public Iterable<T> getAllEvents() {
         return Unirest.get(schedulePlannerBackEndURL + "/events" + endPoint)
-                .asObject(new GenericType<List<T>>(){})
+                .asObject(classTypeAsList)
                 .getBody();
     }
 }
