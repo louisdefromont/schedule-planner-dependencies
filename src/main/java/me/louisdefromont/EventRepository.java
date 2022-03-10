@@ -15,7 +15,11 @@ public abstract class EventRepository <T extends Event> {
         restTemplate = new RestTemplate();
     }
 
-    public T createEvent(T event) {
+    public T saveEvent(T event) {
         return restTemplate.postForObject(schedulePlannerBackEndURL + "/events" + endPoint, event, classType);
+    }
+    
+    public Iterable<T> getAllEvents() {
+        return (Iterable<T>) restTemplate.getForEntity(schedulePlannerBackEndURL + "/events" + endPoint, Iterable.class).getBody();
     }
 }
