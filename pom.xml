@@ -42,9 +42,15 @@
         <version>2.6.3</version>
     </dependency>
     <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-web</artifactId>
-        <version>4.2.6.RELEASE</version>
+        <groupId>com.konghq</groupId>
+        <artifactId>unirest-java</artifactId>
+        <version>3.13.6</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.konghq/unirest-objectmapper-jackson -->
+    <dependency>
+        <groupId>com.konghq</groupId>
+        <artifactId>unirest-objectmapper-jackson</artifactId>
+        <version>3.11.09</version>
     </dependency>
   </dependencies>
 

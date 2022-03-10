@@ -1,25 +1,32 @@
 package me.louisdefromont;
 
-import org.springframework.web.client.RestTemplate;
+import java.util.List;
 
-public abstract class EventRepository <T extends Event> {
+import kong.unirest.GenericType;
+import kong.unirest.Unirest;
+
+public class EventRepository <T extends Event> {
     private String schedulePlannerBackEndURL;
     private String endPoint;
     private Class<T> classType;
-    private RestTemplate restTemplate;
 
     public EventRepository(String schedulePlannerBackEndURL, String endPoint, Class<T> classType) {
         this.schedulePlannerBackEndURL = schedulePlannerBackEndURL;
         this.endPoint = endPoint;
         this.classType = classType;
-        restTemplate = new RestTemplate();
     }
 
     public T saveEvent(T event) {
-        return restTemplate.postForObject(schedulePlannerBackEndURL + "/events" + endPoint, event, classType);
+        return Unirest.post(schedulePlannerBackEndURL + endPoint)
+                .header("Content-Type", "application/json")
+                .body(event)
+                .asObject(classType)
+                .getBody();
     }
     
     public Iterable<T> getAllEvents() {
-        return (Iterable<T>) restTemplate.getForEntity(schedulePlannerBackEndURL + "/events" + endPoint, Iterable.class).getBody();
+        return Unirest.get(schedulePlannerBackEndURL + "/events" + endPoint)
+                .asObject(new GenericType<List<T>>(){})
+                .getBody();
     }
 }
