@@ -45,6 +45,11 @@ public class Schedule {
         return this.scheduleDates;
     }
 
+    public ScheduleDate getScheduleDate(LocalDate date) {
+        int dateDiff = (int) ChronoUnit.DAYS.between(startDate, date);
+        return scheduleDates.get(dateDiff);
+    }
+
     public void setScheduleDates(List<ScheduleDate> scheduleDates) {
         this.scheduleDates = scheduleDates;
     }

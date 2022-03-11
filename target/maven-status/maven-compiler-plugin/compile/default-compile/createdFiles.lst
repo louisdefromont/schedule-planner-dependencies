@@ -1,0 +1,10 @@
+me/louisdefromont/ScheduleDate.class
+me/louisdefromont/ScheduledEvent.class
+me/louisdefromont/RepeatableEvent.class
+me/louisdefromont/RemoteScheduleGenerator.class
+me/louisdefromont/Event.class
+me/louisdefromont/TimeBlock.class
+me/louisdefromont/ToDoEvent.class
+me/louisdefromont/PlannedEvent.class
+me/louisdefromont/Schedule.class
+me/louisdefromont/EventRepository.class
