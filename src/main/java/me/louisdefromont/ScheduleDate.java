@@ -66,7 +66,7 @@ import javax.persistence.OneToMany;
     // TODO: Proper time overlap checking
     public void addEvent(ScheduledEvent event) {
         this.events.add(event);
-        this.events.sort((e1, e2) -> e1.getStartTime().compareTo(e2.getStartTime()));
+        this.events.sort((e1, e2) -> e1.getStartDateTime().compareTo(e2.getStartDateTime()));
     }
 
     public int getAvailiableMinutes() {
@@ -82,17 +82,17 @@ import javax.persistence.OneToMany;
         if (events.size() == 0) {
             timeBlocks.add(new TimeBlock(date, LocalTime.of(0, 0), LocalTime.of(23, 59)));
         } else {
-            if (events.get(0).getStartTime().isAfter(LocalDateTime.of(date, LocalTime.of(0, 0)))) {
-                timeBlocks.add(new TimeBlock(date, LocalTime.of(0, 0), events.get(0).getStartTime().toLocalTime()));
+            if (events.get(0).getStartDateTime().isAfter(LocalDateTime.of(date, LocalTime.of(0, 0)))) {
+                timeBlocks.add(new TimeBlock(date, LocalTime.of(0, 0), events.get(0).getStartDateTime().toLocalTime()));
             }
             for (int scheduledEvent = 0; scheduledEvent < events.size() - 1; scheduledEvent++) {
-                if (! events.get(scheduledEvent).getEndTime().equals(events.get(scheduledEvent + 1).getStartTime())) {
-                    TimeBlock timeBlock = new TimeBlock(events.get(scheduledEvent).getEndTime(), events.get(scheduledEvent + 1).getStartTime());
+                if (! events.get(scheduledEvent).getEndDateTime().equals(events.get(scheduledEvent + 1).getStartDateTime())) {
+                    TimeBlock timeBlock = new TimeBlock(events.get(scheduledEvent).getEndDateTime(), events.get(scheduledEvent + 1).getStartDateTime());
                     timeBlocks.add(timeBlock);
                 }
             }
-            if (events.get(events.size() - 1).getEndTime().isBefore(LocalDateTime.of(date, LocalTime.of(23, 59)))) {
-                timeBlocks.add(new TimeBlock(date, events.get(events.size() - 1).getEndTime().toLocalTime(), LocalTime.of(23, 59)));
+            if (events.get(events.size() - 1).getEndDateTime().isBefore(LocalDateTime.of(date, LocalTime.of(23, 59)))) {
+                timeBlocks.add(new TimeBlock(date, events.get(events.size() - 1).getEndDateTime().toLocalTime(), LocalTime.of(23, 59)));
             }
         }
         
@@ -110,15 +110,15 @@ import javax.persistence.OneToMany;
                 if (timeBlock.getDurationMinutes() >= durationRemaining) {
                     ScheduledEvent scheduledEvent = new ScheduledEvent();
                     scheduledEvent.setName(event.getName());
-                    scheduledEvent.setStartTime(timeBlock.getStartTime());
-                    scheduledEvent.setEndTime(timeBlock.getStartTime().plusMinutes(durationRemaining));
+                    scheduledEvent.setStartDateTime(timeBlock.getStartTime());
+                    scheduledEvent.setEndDateTime(timeBlock.getStartTime().plusMinutes(durationRemaining));
                     addEvent(scheduledEvent);
                     return true;
                 } else {
                     ScheduledEvent scheduledEvent = new ScheduledEvent();
                     scheduledEvent.setName(event.getName());
-                    scheduledEvent.setStartTime(timeBlock.getStartTime());
-                    scheduledEvent.setEndTime(timeBlock.getEndTime());
+                    scheduledEvent.setStartDateTime(timeBlock.getStartTime());
+                    scheduledEvent.setEndDateTime(timeBlock.getEndTime());
                     addEvent(scheduledEvent);
                     durationRemaining -= timeBlock.getDurationMinutes();
                 }

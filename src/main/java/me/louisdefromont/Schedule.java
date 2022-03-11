@@ -81,16 +81,16 @@ public class Schedule {
 
 
     public void addToSchedule(ScheduledEvent scheduledEvent) {
-        if (scheduledEvent.getEndTime().isBefore(endDate.atTime(23, 59))) {
-            scheduleDates.get((int) ChronoUnit.DAYS.between(startDate, scheduledEvent.getStartTime().toLocalDate())).addEvent(scheduledEvent);
+        if (scheduledEvent.getEndDateTime().isBefore(endDate.atTime(23, 59))) {
+            scheduleDates.get((int) ChronoUnit.DAYS.between(startDate, scheduledEvent.getStartDateTime().toLocalDate())).addEvent(scheduledEvent);
         }
     }
 
     private void generate(Iterable<PlannedEvent> plannedEvents, Iterable<RepeatableEvent> repeatableEvents, Iterable<ToDoEvent> toDoEvents) {  
         for (PlannedEvent plannedEvent : plannedEvents) {
             ScheduledEvent scheduledEvent = new ScheduledEvent();
-            scheduledEvent.setStartTime(plannedEvent.getStartTime());
-            scheduledEvent.setEndTime(plannedEvent.getEndTime());
+            scheduledEvent.setStartDateTime(plannedEvent.getStartDateTime());
+            scheduledEvent.setEndDateTime(plannedEvent.getEndDateTime());
             scheduledEvent.setName(plannedEvent.getName());
             addToSchedule(scheduledEvent);
         }
@@ -100,8 +100,8 @@ public class Schedule {
             for (LocalDate currentDate = repeatableEvent.getStartDate(); currentDate.isBefore(endDate.plusDays(1)); currentDate = currentDate.plusDays(repeatableEvent.getRepeatInterval())) {
                 if (currentDate.isAfter(startDate)) {
                     ScheduledEvent scheduledEvent = new ScheduledEvent();
-                    scheduledEvent.setStartTime(LocalDateTime.of(currentDate, repeatableEvent.getStartTime()));
-                    scheduledEvent.setEndTime(LocalDateTime.of(currentDate, repeatableEvent.getEndTime()));
+                    scheduledEvent.setStartDateTime(LocalDateTime.of(currentDate, repeatableEvent.getStartTime()));
+                    scheduledEvent.setEndDateTime(LocalDateTime.of(currentDate, repeatableEvent.getEndTime()));
                     scheduledEvent.setName(repeatableEvent.getName());
                     addToSchedule(scheduledEvent);
                 }

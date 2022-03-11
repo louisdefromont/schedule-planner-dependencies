@@ -16,27 +16,27 @@ import javax.persistence.OneToOne;
  */
 @Entity
 public class ScheduledEvent extends Event {
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
+    private LocalDateTime startDateTime;
+    private LocalDateTime endDateTime;
 
-    public LocalDateTime getStartTime() {
-        return this.startTime;
+    public LocalDateTime getStartDateTime() {
+        return this.startDateTime;
     }
 
-    public void setStartTime(LocalDateTime startTime) {
-        this.startTime = startTime;
+    public void setStartDateTime(LocalDateTime startDateTime) {
+        this.startDateTime = startDateTime;
     }
 
-    public LocalDateTime getEndTime() {
-        return this.endTime;
+    public LocalDateTime getEndDateTime() {
+        return this.endDateTime;
     }
 
-    public void setEndTime(LocalDateTime endTime) {
-        this.endTime = endTime;
+    public void setEndDateTime(LocalDateTime endDateTime) {
+        this.endDateTime = endDateTime;
     }
 
     public int getDurationMinutes() {
-        return (int) ChronoUnit.MINUTES.between(this.startTime, this.endTime);
+        return (int) ChronoUnit.MINUTES.between(this.startDateTime, this.endDateTime);
     }
 
 }
