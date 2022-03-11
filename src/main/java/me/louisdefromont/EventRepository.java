@@ -31,4 +31,12 @@ public class EventRepository <T extends Event> {
                 .asObject(classTypeAsList)
                 .getBody();
     }
+
+    public T deleteEvent(T event) {
+        return Unirest.delete(schedulePlannerBackEndURL + "/events" + endPoint)
+                .header("Content-Type", "application/json")
+                .body(event)
+                .asObject(classType)
+                .getBody();
+    }
 }
